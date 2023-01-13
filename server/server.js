@@ -1,15 +1,21 @@
-import { express } from "express";
-import db from "./config/connection.js";
-//import routes from './routes'
+import express from "express";
+import mongoose from "mongoose";
+import dotenv from "dotenv";
 
-const PORT = process.env.port || 3001;
+// CONFIGURATION
 const app = express();
-
+dotenv.config();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-db.once('open', () => {
-    app.listen(PORT, () => {
-      console.log(`API server running on port ${PORT}!`);
-    });
-  });
+// MONGOOSE SETUP
+const PORT = process.env.port || 3001;
+mongoose
+    .connect(process.env.MONGO_URL, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+    })
+    .then(() => {
+        app.listen(PORT, () => console.log(`Server Port: ${PORT}`));
+    })
+    .catch((error) => console.log(`${error} did not connect`));
