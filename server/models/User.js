@@ -27,14 +27,21 @@ const UserScehma = new Schema(
             min: 2,
             max: 50,
         },
-        favoriteProjects: {
+        friends: {
             type: Array,
-            default: []
-        }
+            default: [],
+        },
+        picturePath: {
+            type: String,
+            default: ""
+        },
+        location: String,
+        occupation: String,
+        impressions: Number,
     },
     { timestamps: true }
 )
 
-const User = mongoose.Model("User", UserScehma);
+const User = mongoose.model("User", UserScehma);
 
 export default User;
