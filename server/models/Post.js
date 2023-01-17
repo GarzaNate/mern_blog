@@ -14,7 +14,7 @@ const PostSchema = new Schema(
             type: String,
             required: true
         },
-        location: true,
+        location: String,
         description: String,
         picturePath: String,
         userPicturePath: String,
