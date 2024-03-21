@@ -1,4 +1,4 @@
-import { Model, Schema } from "mongoose";
+import { mongoose, Schema } from "mongoose";
 
 const blogSchema = new mongoose.Schema(
     {
@@ -41,6 +41,6 @@ const blogSchema = new mongoose.Schema(
     }
 )
 
-const Blog = Model("blog", blogSchema);
+const Blog = mongoose.model("blog", blogSchema);
 
 export default Blog;

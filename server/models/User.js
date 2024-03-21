@@ -1,4 +1,4 @@
-import { Model, Schema } from "mongoose";
+import { mongoose, Schema } from 'mongoose';
 
 // validate email helper function
 var validateEmail = function (email) {
@@ -39,12 +39,12 @@ const userSchema = new mongoose.Schema(
         }],
         comments: [{
             type: Schema.Types.ObjectId,
-            ref: "Comment"
+            ref: "Comment",
         }],
 
     }
 )
 
-const User = Model("user", userSchema);
+const User = mongoose.model('user', userSchema);
 
 export default User;
