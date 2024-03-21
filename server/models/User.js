@@ -41,8 +41,10 @@ const userSchema = new mongoose.Schema(
             type: Schema.Types.ObjectId,
             ref: "Comment"
         }],
-        
+
     }
 )
 
 const User = Model("user", userSchema);
+
+export default User;
