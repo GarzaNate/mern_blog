@@ -1,12 +1,11 @@
 import express from "express";
 import mongoose from "mongoose";
-// import router from "./routes/index.js";
-import User from "./models/User.js";
 
-import apiRoutes from "./routes/index.js";
+import userRoutes from "./routes/userRoute.js";
 
 const PORT = 3001;
 const app = express();
+
 
 // middleware
 app.use(express.json());
@@ -22,20 +21,10 @@ mongoose.connect(process.env.MONGODB_ULI || "mongodb+srv://mern_blog:secret_pass
     console.error('unable to connect to database', err);
   });
 
-app.use(apiRoutes);
+app.use(userRoutes);
 
 // test api (home route)
 app.get('/', (req, res) => {
   res.send('Hello World!');
 });
-
-// create user route
-// app.post('/user', async (req, res) => {
-//   try {
-//     const user = await User.create(req.body);
-//     res.status(200).json(user);
-//   } catch (error) {
-//     res.status(401).json({message: error.message})
-//   }
-// })
 
