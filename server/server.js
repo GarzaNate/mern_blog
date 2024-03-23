@@ -2,6 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 
 import userRoutes from "./routes/userRoute.js";
+import authRoutes from "./routes/authRoute.js";
 
 const PORT = 3001;
 const app = express();
@@ -22,6 +23,7 @@ mongoose.connect(process.env.MONGODB_ULI || "mongodb+srv://mern_blog:secret_pass
   });
 
 app.use(userRoutes);
+app.use(authRoutes);
 
 // test api (home route)
 app.get('/', (req, res) => {

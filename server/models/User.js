@@ -24,10 +24,6 @@ const userSchema = new mongoose.Schema(
             type: String,
             required: true,
         },
-        fullName: {
-            type: String,
-            required: true,
-        },
         bio: {
             type: String,
         },
@@ -42,9 +38,10 @@ const userSchema = new mongoose.Schema(
             ref: "Comment",
         }],
 
-    }
+    },
+    {timestamps: true}
 )
 
-const User = mongoose.model('user', userSchema);
+const User = mongoose.model('User', userSchema);
 
 export default User;

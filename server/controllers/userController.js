@@ -24,15 +24,15 @@ const getUserById = async (req, res) => {
     }
 };
 
-// Create user
-const createUser = async (req, res) => {
-    try {
-        const user = await User.create(req.body);
-        res.status(201).json(user);
-    } catch (error) {
-        res.status(400).json({ message: error.message });
-    }
-};
+// // Create user
+// const createUser = async (req, res) => {
+//     try {
+//         const user = await User.create(req.body);
+//         res.status(201).json(user);
+//     } catch (error) {
+//         res.status(400).json({ message: error.message });
+//     }
+// };
 
 // Update user
 const updateUser = async (req, res) => {
@@ -62,4 +62,4 @@ const deleteUser = async (req, res) => {
     }
 };
 
-export { getUsers, getUserById, createUser, updateUser, deleteUser };
+export { getUsers, getUserById, updateUser, deleteUser };
