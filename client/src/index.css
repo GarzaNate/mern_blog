@@ -1,3 +1,23 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* 
+
+Dark Mode:
+
+Background: Shiny Black (#000000)
+Text: White (#FFFFFF)
+Primary Accent: Electric Blue (#00FFFF) or Neon Green (#39FF14)
+Secondary Accent: Coral (#FF7F50) or Magenta (#FF00FF)
+Tertiary Accent: Gold (#FFD700) or Violet (#EE82EE)
+
+Light Mode:
+
+Background: White (#FFFFFF)
+Text: Black (#000000)
+Primary Accent: Royal Blue (#4169E1) or Emerald Green (#008000)
+Secondary Accent: Orange (#FFA500) or Yellow (#FFFF00)
+Tertiary Accent: Teal (#008080) or Plum (#DDA0DD)
+
+ */
