@@ -20,3 +20,9 @@ function App() {
 }
 
 export default App;
+
+
+// DESIGN HOME PAGE, LOGIN, & SIGNUP
+// Welcome to the Blog!
+// New User? Sign Up here! (button)
+// Already a user? Log in here!
