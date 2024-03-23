@@ -8,10 +8,11 @@ const PORT = 3001;
 const app = express();
 
 
-// middleware
+// EXPRESS MIDDLEWEAR
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// MONGOOSE CONNECTION TO DATABASE
 mongoose.connect(process.env.MONGODB_ULI || "mongodb+srv://mern_blog:secret_password@backenddb.sioezdg.mongodb.net/?retryWrites=true&w=majority&appName=BackendDB")
   .then(() => {
     console.log("Connected to database");
@@ -22,11 +23,18 @@ mongoose.connect(process.env.MONGODB_ULI || "mongodb+srv://mern_blog:secret_pass
     console.error('unable to connect to database', err);
   });
 
+// ROUTES
 app.use(userRoutes);
 app.use(authRoutes);
 
-// test api (home route)
-app.get('/', (req, res) => {
-  res.send('Hello World!');
+// MIDDLEWEAR ERROR FUNCTION
+app.use((err, req, res, next) => {
+  const statusCode = err.statusCode || 500;
+  const message = err.message || "Internal Server Error";
+  return res.status(statusCode).json({
+    success: false,
+    message,
+    statusCode
+  })
 });
 
