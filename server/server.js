@@ -13,7 +13,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // MONGOOSE CONNECTION TO DATABASE
-mongoose.connect(process.env.MONGODB_ULI || "mongodb+srv://mern_blog:secret_password@backenddb.sioezdg.mongodb.net/?retryWrites=true&w=majority&appName=BackendDB")
+mongoose.connect(process.env.MONGODB_URI || "mongodb+srv://mern_blog:secret_password@backenddb.sioezdg.mongodb.net/?retryWrites=true&w=majority&appName=BackendDB")
   .then(() => {
     console.log("Connected to database");
     app.listen(PORT, () => {
