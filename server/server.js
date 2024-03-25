@@ -24,8 +24,8 @@ mongoose.connect(process.env.MONGODB_ULI || "mongodb+srv://mern_blog:secret_pass
   });
 
 // ROUTES
-app.use(userRoutes);
-app.use(authRoutes);
+app.use("/api/user", userRoutes);
+app.use("/api/auth", authRoutes);
 
 // MIDDLEWEAR ERROR FUNCTION
 app.use((err, req, res, next) => {
