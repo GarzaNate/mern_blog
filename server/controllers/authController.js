@@ -25,9 +25,12 @@ export const login = async (req, res, next) => {
         // checking password
         const validPassword = bcryptjs.compareSync(password, validUser.password);
         if (!validPassword) return next(errorHandler(401, 'Wrong credentials'));
-        // asign token
+        // asign token to user
         const token =  jwt.sign({ id: validUser._id }, process.env.JWT_SECRET);
-        res.cookie('accessToken', token, { httpOnly: true }).status(200).json(validUser);
+        // seperate password from user object to not send it to the client
+        const { password: hashedPassword, ...user } = validUser._doc;
+        // send token in a cookie, respond with user object
+        res.cookie('accessToken', token, { httpOnly: true }).status(200).json(user);
 
     } catch (error) {
         next(error);
