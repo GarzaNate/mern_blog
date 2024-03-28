@@ -29,8 +29,10 @@ export const login = async (req, res, next) => {
         const token =  jwt.sign({ id: validUser._id }, process.env.JWT_SECRET);
         // seperate password from user object to not send it to the client
         const { password: hashedPassword, ...user } = validUser._doc;
+        // set cookie expiration date
+        const expireDate = new Date(Date.now() + 3600000);
         // send token in a cookie, respond with user object
-        res.cookie('accessToken', token, { httpOnly: true }).status(200).json(user);
+        res.cookie('accessToken', token, { httpOnly: true, expires: expireDate }).status(200).json(user);
 
     } catch (error) {
         next(error);
