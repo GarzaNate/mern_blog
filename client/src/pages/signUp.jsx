@@ -1,19 +1,23 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function SignUp() {
   const [formData, setFormData] = useState({});
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+  const navigate = useNavigate();
+  // Function to handle form data
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
 
+  // Function to handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       setLoading(true);
       setError(false);
+      // Make a POST request to the server
       const response = await fetch("/api/auth/signup", {
         method: "POST",
         headers: {
@@ -21,6 +25,7 @@ function SignUp() {
         },
         body: JSON.stringify(formData),
       });
+      // Parse the response
       const data = await response.json();
       console.log(data);
       setLoading(false);
@@ -28,6 +33,8 @@ function SignUp() {
         setError(true);
         return;
       }
+      // Navigate to login page if signup is successful
+      navigate('/login');
     } catch (error) {
       setLoading(false);
     }
