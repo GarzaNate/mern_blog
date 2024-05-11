@@ -1,12 +1,19 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import {
+  signInStart,
+  signInSuccess,
+  signInFailure,
+} from "../redux/user/userSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 function Login() {
   const [formData, setFormData] = useState({});
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
-  const navigate = useNavigate();
+  const { loading, error } = useSelector((state) => state.user);
   
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   // function to handle form data
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
@@ -16,8 +23,7 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      setLoading(true);
-      setError(false);
+      dispatch(signInStart());
       // make a POST request to the server
       const response = await fetch("/api/auth/login", {
         method: "POST",
@@ -28,15 +34,15 @@ function Login() {
       });
       // parse the response
       const data = await response.json();
-      setLoading(false);
       if (data.success === false) {
-        setError(true);
+        dispatch(signInFailure(data));
         return;
       }
+      dispatch(signInSuccess(data));
       // navigate to home page if login is successful
-      navigate('/');
+      navigate("/");
     } catch (error) {
-      setLoading(false);
+      dispatch(signInFailure(error));
     }
   };
 
@@ -45,7 +51,7 @@ function Login() {
       <h1 className="text-3xl text-center font-semibold my-7">Account Login</h1>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <input
-          type="text"
+          type="email"
           placeholder="Email"
           id="email"
           className="bg-slate-100 p-3 rounded-lg"
@@ -62,7 +68,7 @@ function Login() {
           disabled={loading}
           className="bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-90"
         >
-          {loading ? 'Loading...' : 'Login'}
+          {loading ? "Loading..." : "Login"}
         </button>
       </form>
       <div className="flex gap-2 mt-5">
@@ -71,7 +77,9 @@ function Login() {
           <span className="text-blue-500">Sign Up Here!</span>
         </Link>
       </div>
-      <p className="text-red-700 my-4">{error && "Something went wrong!"}</p>
+      <p className="text-red-700 mt-5">
+        {error ? error.message || "Something went wrong!" : ""}
+      </p>
     </div>
   );
 }
