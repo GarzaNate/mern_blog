@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 function Header() {
   return (
-    <div className="bg-slate-200">
+    <div className="bg-primary text-secondaryW">
       <div className="flex justify-between items-center max-w-6xl mx-auto p-4">
         {/* HEADER TITLE */}
         <h1>Welcome to the MERN blog!</h1>
