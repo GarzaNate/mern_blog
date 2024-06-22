@@ -1,8 +1,10 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Button, Navbar, TextInput } from "flowbite-react";
 import { AiOutlineSearch } from "react-icons/ai";
 import { FaMoon } from "react-icons/fa";
+
 function Header() {
+  const { pathname: path } = useLocation();
   return (
     <div>
       {/* NAVBAR */}
@@ -36,26 +38,23 @@ function Header() {
           <Button className="w-12 h-10 hidden sm:inline" color="gray" pill>
             <FaMoon />
           </Button>
+          {/* Login Button */}
           <Link to={"/login"}>
-            <Button gradientDuoTone='purpleToBlue' >
-              Login
-            </Button>
+            <Button gradientDuoTone="purpleToBlue">Login</Button>
           </Link>
-
-          <Navbar.Collapse>
-            <Navbar.Link>
-              <Link to={"/"}>
-                Home
-              </Link>
-            </Navbar.Link>
-            <Navbar.Link>
-              <Link to={"/sign-up"}>
-                Sign Up
-              </Link>
-            </Navbar.Link>
-            
-          </Navbar.Collapse>
+          <Navbar.Toggle />
         </div>
+          <Navbar.Collapse>
+            <Navbar.Link as={"div"}>
+              <Link to={"/"}>Home</Link>
+            </Navbar.Link>
+            <Navbar.Link as={"div"}>
+              <Link to={"/profile"}>Profile</Link>
+            </Navbar.Link>
+            <Navbar.Link as={"div"}>
+              <Link to={"/contact"}>Contact</Link>
+            </Navbar.Link>
+          </Navbar.Collapse>
         {/* NAV LIST */}
         {/* <ul className="flex gap-4">
           <Link to={'/'}>
