@@ -4,6 +4,7 @@ import SignUp from "./pages/signUp";
 import Login from "./pages/login";
 import Profile from "./pages/profile";
 import Header from "./components/header";
+import FooterCom from "./components/footer";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/profile" element={<Profile />} />
       </Routes>
+      <FooterCom />
     </BrowserRouter>
   );
 }
