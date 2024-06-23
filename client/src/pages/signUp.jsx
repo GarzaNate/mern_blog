@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { TextInput } from "flowbite-react";
+import { TextInput, Button } from "flowbite-react";
 
 function SignUp() {
   const [formData, setFormData] = useState({});
@@ -86,12 +86,12 @@ function SignUp() {
               className="bg-slate-100 p-3 rounded-lg"
               onChange={handleChange}
             />
-            <button
+            <Button
               disabled={loading}
-              className="bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-90"
+              className="text-white p-3 rounded-lg uppercase hover:opacity-90 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"
             >
               {loading ? "Loading..." : "Sign Up"}
-            </button>
+            </Button>
           </form>
           <div className="flex gap-2 mt-5">
             <p>Already have an account?</p>

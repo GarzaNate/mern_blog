@@ -6,12 +6,12 @@ import {
   signInFailure,
 } from "../redux/user/userSlice";
 import { useDispatch, useSelector } from "react-redux";
-
+import { TextInput, Button } from "flowbite-react";
 
 function Login() {
   const [formData, setFormData] = useState({});
   const { loading, error } = useSelector((state) => state.user);
-  
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -48,39 +48,61 @@ function Login() {
   };
 
   return (
-    <div className="p-3 max-w-lg mx-auto">
-      <h1 className="text-3xl text-center font-semibold my-7">Account Login</h1>
-      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-        <input
-          type="email"
-          placeholder="Email"
-          id="email"
-          className="bg-slate-100 p-3 rounded-lg"
-          onChange={handleChange}
-        />
-        <input
-          type="text"
-          placeholder="Password"
-          id="password"
-          className="bg-slate-100 p-3 rounded-lg"
-          onChange={handleChange}
-        />
-        <button
-          disabled={loading}
-          className="bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-90"
-        >
-          {loading ? "Loading..." : "Login"}
-        </button>
-      </form>
-      <div className="flex gap-2 mt-5">
-        <p>No account?</p>
-        <Link to={"/sign-up"}>
-          <span className="text-blue-500">Sign Up Here!</span>
-        </Link>
+    <div className="min-h-screen mt-20">
+      <div className="flex p-3 max-w-3xl mx-auto flex-col md:flex-row md:items-center gap-5">
+        {/* left */}
+        <div className="flex-1">
+          <Link to={"/"} className="font-bold dark:text-white text-4xl">
+            <span className="px-2 py-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white rounded-lg">
+              MERN
+            </span>{" "}
+            BLOG
+          </Link>
+          <p className="text-sm mt-5">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci
+            architecto pariatur esse dolorem quos, laudantium magni quis
+            doloremque optio aperiam expedita, non fuga doloribus, error ipsam
+            aliquid?
+          </p>
+        </div>
+        {/* right */}
+        <div className="flex-1">
+          <h1 className="text-3xl text-center font-semibold my-7">
+            Login Here!
+          </h1>
+          <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+            <TextInput
+              type="text"
+              placeholder="Email"
+              id="email"
+              className="bg-slate-100 p-3 rounded-lg"
+              onChange={handleChange}
+            />
+            <TextInput
+              type="text"
+              placeholder="Password"
+              id="password"
+              className="bg-slate-100 p-3 rounded-lg"
+              onChange={handleChange}
+            />
+            <Button
+              disabled={loading}
+              className="text-white p-3 rounded-lg uppercase hover:opacity-90 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"
+            >
+              {loading ? "Loading..." : "Sign Up"}
+            </Button>
+          </form>
+          <div className="flex gap-2 mt-5">
+            <p>Already have an account?</p>
+            <Link to={"/login"}>
+              <span className="text-blue-500">Login Here!</span>
+            </Link>
+          </div>
+          <p className="text-red-700 my-4">
+            {error && "Something went wrong!"}
+          </p>
+        </div>
       </div>
-      <p className="text-red-700 mt-5">
-        {error ? error.message || "Something went wrong!" : ""}
-      </p>
     </div>
   );
 }
