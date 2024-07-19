@@ -1,10 +1,12 @@
 import { Link, useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { Button, Navbar, TextInput } from "flowbite-react";
 import { AiOutlineSearch } from "react-icons/ai";
 import { FaMoon } from "react-icons/fa";
 
 function Header() {
   const { pathname: path } = useLocation();
+  const { currentUser } = useSelector((state) => state.user);
   return (
     <div>
       {/* NAVBAR */}
@@ -13,7 +15,7 @@ function Header() {
           to={"/"}
           className="self-center whitespace-nowrap text-sm sm:text-xl font-semibold dark:text-white"
         >
-          <span className="px-2 py-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white rounded-lg">
+          <span className="px-2 py-1 bg-blue-700 text-white rounded-lg">
             MERN
           </span>{" "}
           BLOG
@@ -39,9 +41,16 @@ function Header() {
             <FaMoon />
           </Button>
           {/* Login Button */}
-          <Link to={"/login"}>
-            <Button gradientDuoTone="purpleToBlue">Login</Button>
-          </Link>
+          {currentUser ? ( 
+            <Link to={"/logout"}>
+              <Button className="bg-blue-700">Logout</Button>
+            </Link>
+          ) : 
+          (
+            <Link to={"/sign-up"}>
+              <Button className="bg-blue-700">Sign Up</Button>
+            </Link>
+          )}
           <Navbar.Toggle />
         </div>
           <Navbar.Collapse>
@@ -55,18 +64,6 @@ function Header() {
               <Link to={"/contact"}>Contact</Link>
             </Navbar.Link>
           </Navbar.Collapse>
-        {/* NAV LIST */}
-        {/* <ul className="flex gap-4">
-          <Link to={'/'}>
-            <li>Home</li>
-          </Link>
-          <Link to={"/sign-up"}>
-            <li>Sign Up</li>
-          </Link>
-          <Link to={"/login"}>
-            <li>Login</li>
-          </Link>
-        </ul> */}
       </Navbar>
     </div>
   );

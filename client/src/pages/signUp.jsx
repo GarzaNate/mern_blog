@@ -47,7 +47,7 @@ function SignUp() {
         {/* left */}
         <div className="flex-1">
           <Link to={"/"} className="font-bold dark:text-white text-4xl">
-            <span className="px-2 py-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white rounded-lg">
+            <span className="px-2 py-1 bg-blue-700 text-white rounded-lg">
               MERN
             </span>{" "}
             BLOG
@@ -88,7 +88,7 @@ function SignUp() {
             />
             <Button
               disabled={loading}
-              className="text-white p-3 rounded-lg uppercase hover:opacity-90 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"
+              className="text-white p-3 rounded-lg uppercase hover:opacity-90 bg-blue-700"
             >
               {loading ? "Loading..." : "Sign Up"}
             </Button>
