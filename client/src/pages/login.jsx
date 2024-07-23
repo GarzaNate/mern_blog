@@ -23,6 +23,7 @@ function Login() {
   // function to handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log("hit");
     try {
       dispatch(signInStart());
       // make a POST request to the server
@@ -41,8 +42,9 @@ function Login() {
       }
       dispatch(signInSuccess(data));
       // navigate to home page if login is successful
-      navigate("/");
+      navigate('/');
     } catch (error) {
+      console.log(error)
       dispatch(signInFailure(error));
     }
   };
