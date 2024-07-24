@@ -34,10 +34,14 @@ function SignUp() {
         setError(true);
         return;
       }
-      // Navigate to login page if signup is successful
-      navigate("/login");
+      setLoading(false);
+      if (response.ok) {
+        // Navigate to login page if signup is successful
+        navigate("/login");
+      }
     } catch (error) {
       setLoading(false);
+      setError(true);
     }
   };
 
@@ -87,6 +91,7 @@ function SignUp() {
               onChange={handleChange}
             />
             <Button
+              type="submit"
               disabled={loading}
               className="text-white p-3 rounded-lg uppercase hover:opacity-90 bg-blue-700"
             >

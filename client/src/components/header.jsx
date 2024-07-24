@@ -3,10 +3,28 @@ import { useSelector } from "react-redux";
 import { Button, Navbar, TextInput } from "flowbite-react";
 import { AiOutlineSearch } from "react-icons/ai";
 import { FaMoon } from "react-icons/fa";
+import { signOutSuccess } from "../redux/user/userSlice";
 
 function Header() {
   const { pathname: path } = useLocation();
   const { currentUser } = useSelector((state) => state.user);
+
+  const handleSignout = async () => {
+    try {
+      const res = await fetch("/api/auth/signout", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        console.log(data.message);
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
   return (
     <div>
       {/* NAVBAR */}
@@ -41,29 +59,34 @@ function Header() {
             <FaMoon />
           </Button>
           {/* Login Button */}
-          {currentUser ? ( 
-            <Link to={"/logout"}>
-              <Button className="bg-blue-700">Logout</Button>
+
+          {/* 
+          // if currentUser is true, display signout button, else display signup button  */}
+          {/* {currentUser ? (
+            <Link >
+              <Button onClick={handleSignout} className="bg-blue-700">
+                Signout
+              </Button>
             </Link>
-          ) : 
-          (
-            <Link to={"/sign-up"}>
-              <Button className="bg-blue-700">Sign Up</Button>
-            </Link>
-          )}
+          ) : (
+          )} */}
+          
+          <Link to={"/sign-up"}>
+            <Button className="bg-blue-700">Sign Up</Button>
+          </Link>
           <Navbar.Toggle />
         </div>
-          <Navbar.Collapse>
-            <Navbar.Link as={"div"}>
-              <Link to={"/"}>Home</Link>
-            </Navbar.Link>
-            <Navbar.Link as={"div"}>
-              <Link to={"/profile"}>Profile</Link>
-            </Navbar.Link>
-            <Navbar.Link as={"div"}>
-              <Link to={"/contact"}>Contact</Link>
-            </Navbar.Link>
-          </Navbar.Collapse>
+        <Navbar.Collapse>
+          <Navbar.Link as={"div"}>
+            <Link to={"/"}>Home</Link>
+          </Navbar.Link>
+          <Navbar.Link as={"div"}>
+            <Link to={"/profile"}>Profile</Link>
+          </Navbar.Link>
+          <Navbar.Link as={"div"}>
+            <Link to={"/contact"}>Contact</Link>
+          </Navbar.Link>
+        </Navbar.Collapse>
       </Navbar>
     </div>
   );

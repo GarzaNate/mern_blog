@@ -19,11 +19,10 @@ function Login() {
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
-
+  console.log(formData);
   // function to handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("hit");
     try {
       dispatch(signInStart());
       // make a POST request to the server
@@ -42,9 +41,9 @@ function Login() {
       }
       dispatch(signInSuccess(data));
       // navigate to home page if login is successful
-      navigate('/');
+      navigate("/");
     } catch (error) {
-      console.log(error)
+      console.log("not working");
       dispatch(signInFailure(error));
     }
   };
@@ -88,6 +87,7 @@ function Login() {
               onChange={handleChange}
             />
             <Button
+              type="submit"
               disabled={loading}
               className="text-white p-3 rounded-lg uppercase hover:opacity-90 bg-blue-700"
             >

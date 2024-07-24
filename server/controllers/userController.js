@@ -62,4 +62,16 @@ const deleteUser = async (req, res) => {
     }
 };
 
-export { getUsers, getUserById, updateUser, deleteUser };
+const signOut = (req, res, next) => {
+    try {
+        res
+            .clearCookie('accessToken')
+            .status(200)
+            .json({ message: 'Logged out successfully' })
+    } catch (error) {
+        next(error);
+    }
+    ;
+}
+
+export { getUsers, getUserById, updateUser, deleteUser, signOut };
