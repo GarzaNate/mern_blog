@@ -36,8 +36,8 @@ export default {
         dark: "#2c2c2c", // dark grey
       },
       accent: { // yellow: accent color 
-        light: "#007BFF",
-        DEFAULT: "#007BFF",
+        light: "#FFC107",
+        DEFAULT: "#FFC107",
         dark: "#007BFF",
       }
     },

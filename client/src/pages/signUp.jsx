@@ -51,7 +51,7 @@ function SignUp() {
         {/* left */}
         <div className="flex-1">
           <Link to={"/"} className="font-bold dark:text-white text-4xl">
-            <span className="px-2 py-1 bg-blue-700 text-white rounded-lg">
+            <span className="px-2 py-1 bg-primary-light dark:bg-primary-dark text-white rounded-lg">
               MERN
             </span>{" "}
             BLOG
@@ -93,7 +93,7 @@ function SignUp() {
             <Button
               type="submit"
               disabled={loading}
-              className="text-white p-3 rounded-lg uppercase hover:opacity-90 bg-blue-700"
+              className=" p-3 rounded-lg uppercase hover:opacity-90 bg-primary-light dark:bg-primary-dark"
             >
               {loading ? "Loading..." : "Sign Up"}
             </Button>

@@ -4,7 +4,7 @@ import { Footer } from "flowbite-react";
 const FooterCom = () => {
   return (
     <div>
-      <Footer container className="border border-t-8 border-purple-500">
+      <Footer container className="border border-t-8 border-border-light dark:border-border-dark">
         <div className="w-full max-w-7xl mx-auto">
           <Footer.Copyright href="#" by="Josue" year={2024} />
           <Footer.LinkGroup>

@@ -16,6 +16,7 @@ function App() {
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/contact" element={<Contact /> } />
       </Routes>
       <FooterCom />
     </BrowserRouter>

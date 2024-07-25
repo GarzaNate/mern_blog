@@ -1,13 +1,15 @@
 import { Link, useLocation } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Button, Navbar, TextInput } from "flowbite-react";
 import { AiOutlineSearch } from "react-icons/ai";
 import { FaMoon } from "react-icons/fa";
 import { signOutSuccess } from "../redux/user/userSlice";
+import { toggleTheme } from "../redux/theme/themeSlice";
 
 function Header() {
   const { pathname: path } = useLocation();
   const { currentUser } = useSelector((state) => state.user);
+  const dispatchEvent = useDispatch();
 
   const handleSignout = async () => {
     try {
@@ -33,7 +35,7 @@ function Header() {
           to={"/"}
           className="self-center whitespace-nowrap text-sm sm:text-xl font-semibold dark:text-white"
         >
-          <span className="px-2 py-1 bg-blue-700 text-white rounded-lg">
+          <span className="px-2 py-1 bg-primary-light dark:bg-primary-dark text-white rounded-lg">
             MERN
           </span>{" "}
           BLOG
@@ -55,25 +57,25 @@ function Header() {
 
         <div className="flex gap-2 md:order-2">
           {/* Dark mode toggle */}
-          <Button className="w-12 h-10 hidden sm:inline" color="gray" pill>
+          <Button className="w-12 h-10 hidden sm:inline" color="gray" pill onClick={() => dispatchEvent(toggleTheme())}>
             <FaMoon />
           </Button>
           {/* Login Button */}
 
           {/* 
           // if currentUser is true, display signout button, else display signup button  */}
-          {/* {currentUser ? (
+          {currentUser ? (
             <Link >
-              <Button onClick={handleSignout} className="bg-blue-700">
+              <Button onClick={handleSignout} className="bg-primary-light dark:bg-primary-dark">
                 Signout
               </Button>
             </Link>
           ) : (
-          )} */}
-          
           <Link to={"/sign-up"}>
-            <Button className="bg-blue-700">Sign Up</Button>
+            <Button className="bg-primary-light">Sign Up</Button>
           </Link>
+          )}
+          
           <Navbar.Toggle />
         </div>
         <Navbar.Collapse>
